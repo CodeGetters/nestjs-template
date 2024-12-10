@@ -4,7 +4,7 @@ import { DemoModule } from './common/demo/demo.module';
 const NODE_ENV =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
-console.log('=========NODE_ENV==========', NODE_ENV);
+// console.log('=========NODE_ENV==========', NODE_ENV);
 
 @Module({
   imports: [DemoModule],
