@@ -47,7 +47,9 @@ export class PrismaService
    * 模块初始化时连接数据库
    */
   async onModuleInit() {
-    await this.$connect();
+    console.group('this must be cancelled');
+    // await this.$connect();
+    // console.log('database url must be set in .env file');
     this.logger.log('Database connected successfully', 'PrismaService');
   }
 
