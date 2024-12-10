@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          REMOTE_HOST: xxx
+          REMOTE_USER: root
+          TARGET: /blog-and-component-lib
+          EXCLUDE: ".git, node_modules, .github, .vscode"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            cd /lblog-and-component-lib
+            docker build -t blog-and-component-lib .
+            docker stop blog-and-component-lib
+            docker rm blog-and-component-lib
+            docker run -d --name blog-and-component-lib -p 3001:3000 blog-and-component-lib
