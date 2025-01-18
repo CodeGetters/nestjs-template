@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "./dist/main.js",
+      "src": "dist/main.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "public/$1"
+      "dest": "dist/main.js"
     }
   ],
   "installCommand": "pnpm install --no-frozen-lockfile && npx prisma generate",
