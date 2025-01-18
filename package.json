@@ -25,12 +25,6 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "cz": "czg"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-git",
-      "useEmoji": true
-    }
-  },
   "lint-staged": {
     "*.{js,vue,ts,jsx,tsx}": [
       "prettier --write"
