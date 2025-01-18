@@ -53,7 +53,6 @@
     "nest-winston": "^1.9.7",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "webpack": "^5.97.1",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
   },

@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as winston from 'winston';
 import * as path from 'path';
-
-// 修改导入方式
-const DailyRotateFile = require('winston-daily-rotate-file');
+import * as DailyRotateFile from 'winston-daily-rotate-file';
 
 const LOG_DIR = 'logs';
 

@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
 import { DemoService } from './demo.service';
-// import { SkipTransform } from '@/core/decorator/skip-transform.decorator';
+import { SkipTransform } from '@/core/decorator/skip-transform.decorator';
 
 @Controller()
 export class DemoController {
@@ -22,7 +22,7 @@ export class DemoController {
   }
 
   @Post('error')
-  // @SkipTransform()
+  @SkipTransform()
   postError() {
     return this.demoService.postError();
   }

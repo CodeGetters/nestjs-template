@@ -1,7 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-// import { Reflector } from '@nestjs/core';
+import { Reflector } from '@nestjs/core';
 import {
   FastifyAdapter,
   NestFastifyApplication,
@@ -10,8 +10,8 @@ import { join } from 'path';
 import { readFileSync } from 'fs';
 import fastifyStatic from '@fastify/static';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-// import { TransformInterceptor } from '@/core/interceptor/transform.interceptor';
-// import { TimeoutInterceptor } from '@/core/interceptor/timeout.interceptor';
+import { TransformInterceptor } from '@/core/interceptor/transform.interceptor';
+import { TimeoutInterceptor } from '@/core/interceptor/timeout.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -67,10 +67,10 @@ async function bootstrap() {
   });
 
   // 序列化返回内容
-  // app.useGlobalInterceptors(new TransformInterceptor(new Reflector()));
+  app.useGlobalInterceptors(new TransformInterceptor(new Reflector()));
 
   // 响应时间超过3s为超时错误
-  // app.useGlobalInterceptors(new TimeoutInterceptor(60 * 1000));
+  app.useGlobalInterceptors(new TimeoutInterceptor(60 * 1000));
 
   // 添加静态文件服务
   await app.register(fastifyStatic as any, {
