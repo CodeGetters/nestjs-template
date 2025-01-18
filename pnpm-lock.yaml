@@ -90,9 +90,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.0.0
         version: 8.18.0(eslint@8.57.1)(typescript@5.7.2)
-      cz-git:
-        specifier: ^1.10.1
-        version: 1.11.0
       czg:
         specifier: ^1.11.0
         version: 1.11.0
@@ -1540,10 +1537,6 @@ packages:
 
   culvert@0.1.2:
     resolution: {integrity: sha512-yi1x3EAWKjQTreYWeSd98431AV+IEE0qoDyOoaHJ7KJ21gv6HtBXHVLX74opVSGqcR8/AbjJBHAHpcOy2bj5Gg==}
-
-  cz-git@1.11.0:
-    resolution: {integrity: sha512-FCNkpyVmNPX0P8kHtX8uoFcXsJ4bjivMXVS5vc/qCyM8jj+Tuqo6CXQjGQKwKl0Lk9VNz7o6JfPoU/mM/XhxqA==}
-    engines: {node: '>=v12.20.0'}
 
   czg@1.11.0:
     resolution: {integrity: sha512-go39avnHPvDn1HF4LS1qxj5XPGCQexZ9+y8f+0VlE9plZgRyWUOl4rUCwE4vD1azouIhz/KaauB45A7jPfMxpw==}
@@ -5667,8 +5660,6 @@ snapshots:
       which: 2.0.2
 
   culvert@0.1.2: {}
-
-  cz-git@1.11.0: {}
 
   czg@1.11.0: {}
 
