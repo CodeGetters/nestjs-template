@@ -1,19 +1,25 @@
 {
   "builds": [
     {
+      "src": "public/index.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "dist/main.js",
-      "use": "@vercel/node",
-      "config": {
-        "installCommand": "pnpm install --no-frozen-lockfile && npx prisma generate",
-        "buildCommand": "pnpm run build:prod"
-      }
+      "use": "@vercel/node"
     }
   ],
+  "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
+  "buildCommand": "pnpm run build:prod",
+  "outputDirectory": "dist",
   "routes": [
     {
       "src": "/(.*)",
       "dest": "dist/main.js",
-      "methods": ["GET", "POST", "PUT", "DELETE"]
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
