@@ -4,8 +4,8 @@
       "src": "src/main.ts",
       "use": "@vercel/node",
       "config": {
-        "installCommand": "npm install && npx prisma generate",
-        "buildCommand": "npm run build"
+        "installCommand": "pnpm install && pnpm  prisma generate",
+        "buildCommand": "pnpm run build"
       }
     }
   ],

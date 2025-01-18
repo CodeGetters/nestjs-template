@@ -2,7 +2,7 @@
   "name": "nest-server",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "CodeGetters",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -87,10 +87,10 @@
     "typescript": "^5.1.3"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=8"
+    "node": ">=20",
+    "pnpm": ">=9"
   },
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.14.4",
   "jest": {
     "moduleFileExtensions": [
       "js",
