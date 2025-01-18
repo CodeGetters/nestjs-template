@@ -33,21 +33,35 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
+  // 设置 Swagger 文档路由和配置
   SwaggerModule.setup('docs', app, document, {
+    // 指定 Swagger JSON 文档的访问路径
     jsonDocumentUrl: 'docs/json',
+    // 设置文档页面的标题
     customSiteTitle: 'API Documentation',
+    // 自定义 JavaScript 文件，使用 CDN 资源
     customJs: [
+      // Swagger UI 的核心功能包
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js',
+      // Swagger UI 的独立预设包，提供额外功能
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js',
     ],
+    // 自定义 CSS 样式文件，使用 CDN 资源
     customCssUrl: [
+      // Swagger UI 的默认样式
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css',
     ],
+    // Swagger UI 的具体配置选项
     swaggerOptions: {
+      // 持久化认证信息，页面刷新后保持登录状态
       persistAuthorization: true,
+      // 显示接口响应时间
       displayRequestDuration: true,
+      // 默认折叠所有接口文档
       docExpansion: 'none',
+      // 启用搜索过滤功能
       filter: true,
+      // 显示通用扩展属性
       showCommonExtensions: true,
     },
   });
