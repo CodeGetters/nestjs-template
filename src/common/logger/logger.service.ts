@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import * as winston from 'winston';
-import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as path from 'path';
+
+// 修改导入方式
+const DailyRotateFile = require('winston-daily-rotate-file');
 
 const LOG_DIR = 'logs';
 
@@ -44,7 +46,7 @@ export class LoggerService {
           format: winston.format.combine(
             winston.format.colorize(),
             winston.format.simple(),
-          ),
+          ) as any, // 添加类型断言
         }),
       );
     }

@@ -9,36 +9,33 @@ import { LoggerService } from '@/common/logger/logger.service';
  */
 @Injectable()
 export class PrismaService
-  extends PrismaClient<{
-    log: { emit: 'event'; level: 'query' | 'info' | 'warn' | 'error' }[];
-  }>
+  extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
   constructor(private logger: LoggerService) {
     super({
-      // 配置 Prisma 日志事件
       log: [
-        { emit: 'event', level: 'query' }, // SQL 查询日志
-        { emit: 'event', level: 'info' }, // 信息日志
-        { emit: 'event', level: 'warn' }, // 警告日志
-        { emit: 'event', level: 'error' }, // 错误日志
+        { emit: 'event', level: 'query' },
+        { emit: 'event', level: 'info' },
+        { emit: 'event', level: 'warn' },
+        { emit: 'event', level: 'error' },
       ],
     });
 
-    // 监听 Prisma 事件并记录日志
-    this.$on('query', (e) => {
+    // 使用 any 类型断言来处理事件监听
+    (this as any).$on('query', (e: any) => {
       this.logger.debug(`Query: ${e.query}`, 'PrismaService');
     });
 
-    this.$on('info', (e) => {
+    (this as any).$on('info', (e: any) => {
       this.logger.log(`${e.message}`, 'PrismaService');
     });
 
-    this.$on('warn', (e) => {
+    (this as any).$on('warn', (e: any) => {
       this.logger.warn(`${e.message}`, 'PrismaService');
     });
 
-    this.$on('error', (e) => {
+    (this as any).$on('error', (e: any) => {
       this.logger.error(`${e.message}`, null, 'PrismaService');
     });
   }
@@ -57,7 +54,8 @@ export class PrismaService
    * 模块销毁时断开数据库连接
    */
   async onModuleDestroy() {
-    await this.$disconnect();
+    // await this.$disconnect();
+    await (this as any).$disconnect();
     this.logger.log('Database disconnected successfully', 'PrismaService');
   }
 }

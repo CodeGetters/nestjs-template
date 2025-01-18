@@ -72,9 +72,8 @@ async function bootstrap() {
             .header('Content-Type', 'text/plain; charset=utf-8')
             .send('Internal Server Error');
         }
-        done();
-        return;
       }
+      done();
     });
 
   await app.listen(8888, '0.0.0.0');
