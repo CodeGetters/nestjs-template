@@ -4,7 +4,7 @@
       "src": "src/main.ts",
       "use": "@vercel/node",
       "config": {
-        "installCommand": "pnpm install && pnpm  prisma generate",
+        "installCommand": "pnpm install --no-frozen-lockfile && npx prisma generate",
         "buildCommand": "pnpm run build"
       }
     }
