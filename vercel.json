@@ -1,26 +1,11 @@
 {
   "builds": [
     {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dist/main.js",
+      "src": "./dist/main.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "dist/main.js"
-    },
-    {
-      "src": "/docs/(.*)",
-      "dest": "dist/main.js"
-    },
-    {
-      "handle": "filesystem"
-    },
     {
       "src": "/(.*)",
       "dest": "public/$1"
