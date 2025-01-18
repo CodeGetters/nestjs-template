@@ -46,7 +46,7 @@ export class LoggerService {
           format: winston.format.combine(
             winston.format.colorize(),
             winston.format.simple(),
-          ) as any, // 添加类型断言
+          ),
         }),
       );
     }
