@@ -15938,7 +15938,7 @@
         new timeout_interceptor_1.TimeoutInterceptor(60 * 1000),
       );
       await app.register(static_1.default, {
-        root: (0, path_1.join)(process.cwd(), 'public'),
+        root: (0, path_1.join)(process.cwd(), '..', 'public'),
         prefix: '/',
         decorateReply: false,
         schemaHide: true,

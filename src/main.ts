@@ -74,7 +74,7 @@ async function bootstrap() {
 
   // 添加静态文件服务
   await app.register(fastifyStatic as any, {
-    root: join(process.cwd(), 'public'),
+    root: join(process.cwd(), '..', 'public'),
     prefix: '/',
     decorateReply: false, // 避免多个静态文件插件之间的装饰器冲突
     schemaHide: true, // 隐藏该路由在 Swagger 中的显示
