@@ -1,15 +1,26 @@
 {
   "version": 2,
-  "outputDirectory": "dist",
-  "buildCommand": "pnpm build:prod",
+  "outputDirectory": "api",
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
+  "buildCommand": "mkdir logs && pnpm build:prod",
   "env": {
     "NODE_ENV": "production"
   },
+  "builds": [
+    {
+      "src": "logs/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
   "functions": {
     "api/index.js": {
       "memory": 1024,
-      "maxDuration": 60
+      "maxDuration": 60,
+      "includeFiles": ["logs/**"]
     }
   },
   "rewrites": [
