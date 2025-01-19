@@ -1,25 +1,19 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "dist/main.js",
-      "use": "@vercel/node",
-      "config": {
-        "buildCommand": "pnpm build:prod",
-        "outputDirectory": "dist",
-        "includeFiles": ["dist/**"]
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/main.js",
-      "methods": ["GET", "POST", "PUT", "DELETE"]
-    }
-  ],
+  "outputDirectory": "dist",
+  "buildCommand": "pnpm build:prod",
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/dist/main.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/dist/main.js"
+    }
+  ]
 }
