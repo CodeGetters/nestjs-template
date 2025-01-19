@@ -48,7 +48,7 @@ module.exports = {
     // 构建后的文件名
     filename: 'index.js',
     // 构建后的文件存放路径，使用 path.resolve 获取绝对路径
-    path: path.resolve(__dirname, 'api'),
+    path: path.resolve(__dirname, 'dist'),
   },
 
   // 解析配置

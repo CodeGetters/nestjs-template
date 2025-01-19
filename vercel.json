@@ -1,15 +1,21 @@
 {
   "version": 2,
-  "outputDirectory": "api",
+  "outputDirectory": "dist",
   "buildCommand": "pnpm build:prod",
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
   "env": {
     "NODE_ENV": "production"
   },
+  "functions": {
+    "dist/main.js": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/api"
+      "destination": "/dist"
     }
   ]
 }
