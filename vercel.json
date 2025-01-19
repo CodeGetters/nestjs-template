@@ -7,7 +7,7 @@
     "NODE_ENV": "production"
   },
   "functions": {
-    "dist/main.js": {
+    "api/**/*.js": {
       "memory": 1024,
       "maxDuration": 60
     }
@@ -15,7 +15,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/dist"
+      "destination": "/api"
     }
   ]
 }
