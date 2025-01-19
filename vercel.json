@@ -6,16 +6,6 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "builds": [
-    {
-      "src": "logs/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    }
-  ],
   "functions": {
     "api/index.js": {
       "memory": 1024,
