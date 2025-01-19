@@ -2,15 +2,14 @@
   "version": 2,
   "outputDirectory": "api",
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
-  "buildCommand": "mkdir logs && pnpm build:prod",
+  "buildCommand": "pnpm build:prod",
   "env": {
     "NODE_ENV": "production"
   },
   "functions": {
     "api/index.js": {
       "memory": 1024,
-      "maxDuration": 60,
-      "includeFiles": "logs/**"
+      "maxDuration": 60
     }
   },
   "rewrites": [
