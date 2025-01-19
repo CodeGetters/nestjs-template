@@ -5,6 +5,8 @@
       "src": "dist/main.js",
       "use": "@vercel/node",
       "config": {
+        "buildCommand": "pnpm build:prod",
+        "outputDirectory": "dist",
         "includeFiles": ["dist/**"]
       }
     }
@@ -17,8 +19,6 @@
     }
   ],
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
-  "buildCommand": "pnpm build:prod",
-  "outputDirectory": "dist",
   "env": {
     "NODE_ENV": "production"
   }
