@@ -1,6 +1,6 @@
 # NestJS Template
 
-[中文版](README.md) | [English Version](README-EN.md)
+[中文](README.md) | [English](README-EN.md)
 
 A full-featured NestJS backend project template with common functionalities and best practices.
 
@@ -13,6 +13,7 @@ A full-featured NestJS backend project template with common functionalities and 
 - 💾 Prisma ORM integration
 - ⚡️ Request timeout handling
 - ✨ Unified response transformation
+- 🦢 support vercel one-click deployment
 
 ## Project Structure
 
@@ -73,6 +74,14 @@ pnpm run build
 ```bash
 http://localhost:8080/docs
 ```
+
+## One-Click Deploy
+
+> When Vercel is deployed, an empty LoggerService will be introduced, because Vercel has its own log system, and using the original log system will cause the operation to fail.
+
+Deploy the template using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CodeGetters/nestjs-template)
 
 ## Main Features
 

@@ -1,6 +1,6 @@
 # NestJS Template
 
-[中文版](README.md) | [English Version](README-EN.md)
+[中文](README.md) | [English](README-EN.md)
 
 一个功能完整的 NestJS 后端项目模板，集成了常用功能和最佳实践。
 
@@ -13,6 +13,7 @@
 - 💾 Prisma ORM 集成
 - ⚡️ 请求超时处理
 - ✨ 统一的响应数据转换
+- 🦢 支持 vercel 一键部署
 
 ## 项目结构
 
@@ -73,6 +74,14 @@ pnpm run build
 ```bash
 http://localhost:8080/docs
 ```
+
+## 一键部署
+
+> Vercel 部署时将会引入空的 LoggerService，这是因为 Vercel 自带 log 系统，使用原有的日志系统会导致运行失败。
+
+部署使用这个模板 [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CodeGetters/nestjs-template)
 
 ## 主要功能说明
 
