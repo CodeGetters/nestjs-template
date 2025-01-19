@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "outputDirectory": "api",
+  "outputDirectory": "dist",
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
   "buildCommand": "pnpm build:prod",
   "env": {
