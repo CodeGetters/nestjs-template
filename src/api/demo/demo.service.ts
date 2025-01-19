@@ -1,40 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { LoggerService } from '@/common/logger/logger.service';
+// import { LoggerService } from '@/common/logger/logger.service';
 import { CustomResponse } from '@/core/interceptor/transform.interceptor';
+import { isVercel } from '@/app.module';
 
 @Injectable()
 export class DemoService {
-  constructor(private logger: LoggerService) {}
+  // constructor(private logger: LoggerService) {}
 
   getHello() {
-    this.logger.log('Getting hello message', 'DemoService');
+    // this.logger.log('Getting hello message', 'DemoService');
     return new CustomResponse('Hello World', '请求成功', '2000');
   }
 
   postHello() {
-    this.logger.log('post hello message', 'DemoService');
+    // this.logger.log('post hello message', 'DemoService');
     return 'post hello';
   }
 
   getError() {
-    this.logger.error('get error message', 'DemoService');
+    // this.logger.error('get error message', 'DemoService');
     return '错误原因.....';
   }
 
   postError() {
-    this.logger.error('post error message', 'DemoService');
+    // this.logger.error('post error message', 'DemoService');
     return '错误原因(跳过序列化).....';
   }
 
   getParams(query: any) {
     console.log('======query====', query);
-    this.logger.log('get params message', 'DemoService');
+    // this.logger.log('get params message', 'DemoService');
     return query;
   }
 
   postParams(body: any) {
     console.log('======获取form-urlencoded====', body);
-    this.logger.log('post params message', 'DemoService');
+    // this.logger.log('post params message', 'DemoService');
     return body;
   }
 }

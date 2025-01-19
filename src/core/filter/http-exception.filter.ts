@@ -5,7 +5,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
-import { LoggerService } from '@/common/logger/logger.service';
+// import { LoggerService } from '@/common/logger/logger.service';
 
 /**
  * HTTP 异常过滤器
@@ -13,7 +13,7 @@ import { LoggerService } from '@/common/logger/logger.service';
  */
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(private readonly logger: LoggerService) {}
+  // constructor(private readonly logger: LoggerService) {}
 
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -41,7 +41,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     // 只记录非 favicon.ico 的错误
-    this.logger.error(errorMessage, exception.stack, 'HttpExceptionFilter');
+    // this.logger.error(errorMessage, exception.stack, 'HttpExceptionFilter');
 
     response.status(status).send({
       code: errorCode,

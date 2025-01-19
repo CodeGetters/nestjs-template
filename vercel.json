@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "outputDirectory": "dist",
   "installCommand": "pnpm install --no-frozen-lockfile && pnpm exec prisma generate",
   "buildCommand": "pnpm build:prod",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "VERCEL": "1"
   },
   "functions": {
     "api/index.js": {
