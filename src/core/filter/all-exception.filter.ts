@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-// import { LoggerService } from '@/common/logger/logger.service';
+import { LoggerService } from '@/common/logger/logger.service';
 
 /**
  * 全局异常过滤器
@@ -17,7 +17,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 export class AllExceptionFilter implements ExceptionFilter {
   constructor(
     private readonly httpAdapterHost: HttpAdapterHost,
-    // private readonly logger: LoggerService,
+    private readonly logger: LoggerService,
   ) {}
 
   catch(exception: unknown, host: ArgumentsHost) {
@@ -64,11 +64,11 @@ export class AllExceptionFilter implements ExceptionFilter {
     }
 
     // 记录错误日志
-    // this.logger.error(
-    //   message,
-    //   exception instanceof Error ? exception.stack : undefined,
-    //   'AllExceptionFilter',
-    // );
+    this.logger.error(
+      message,
+      exception instanceof Error ? exception.stack : undefined,
+      'AllExceptionFilter',
+    );
 
     // 构造错误响应
     const responseBody = {

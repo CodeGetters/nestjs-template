@@ -96,3 +96,12 @@ export class LoggerService {
     this.logger.verbose(message, { context });
   }
 }
+
+@Injectable()
+export class NoopLoggerService {
+  log() {}
+  error() {}
+  warn() {}
+  debug() {}
+  verbose() {}
+}

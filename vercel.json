@@ -4,7 +4,7 @@
   "buildCommand": "pnpm build:prod",
   "env": {
     "NODE_ENV": "production",
-    "VERCEL": "1"
+    "VERCEL_DEPLOY": "1"
   },
   "functions": {
     "api/index.js": {

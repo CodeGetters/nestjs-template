@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-// import { LoggerService } from '@/common/logger/logger.service';
+import { LoggerService } from '@/common/logger/logger.service';
 
 /**
  * Prisma 服务类
@@ -14,33 +14,33 @@ export class PrismaService
   }>
   implements OnModuleInit, OnModuleDestroy
 {
-  // constructor(private logger: LoggerService) {
-  //   super({
-  //     log: [
-  //       { emit: 'event', level: 'query' }, // SQL 查询日志
-  //       { emit: 'event', level: 'info' }, // 信息日志
-  //       { emit: 'event', level: 'warn' }, // 警告日志
-  //       { emit: 'event', level: 'error' }, // 错误日志
-  //     ],
-  //   });
+  constructor(private logger: LoggerService) {
+    super({
+      log: [
+        { emit: 'event', level: 'query' }, // SQL 查询日志
+        { emit: 'event', level: 'info' }, // 信息日志
+        { emit: 'event', level: 'warn' }, // 警告日志
+        { emit: 'event', level: 'error' }, // 错误日志
+      ],
+    });
 
-  //   // 监听 Prisma 事件并记录日志
-  //   this.$on('query', (e) => {
-  //     this.logger.debug(`Query: ${e.query}`, 'PrismaService');
-  //   });
+    // 监听 Prisma 事件并记录日志
+    this.$on('query', (e) => {
+      this.logger.debug(`Query: ${e.query}`, 'PrismaService');
+    });
 
-  //   this.$on('info', (e) => {
-  //     this.logger.log(`${e.message}`, 'PrismaService');
-  //   });
+    this.$on('info', (e) => {
+      this.logger.log(`${e.message}`, 'PrismaService');
+    });
 
-  //   this.$on('warn', (e) => {
-  //     this.logger.warn(`${e.message}`, 'PrismaService');
-  //   });
+    this.$on('warn', (e) => {
+      this.logger.warn(`${e.message}`, 'PrismaService');
+    });
 
-  //   this.$on('error', (e) => {
-  //     this.logger.error(`${e.message}`, null, 'PrismaService');
-  //   });
-  // }
+    this.$on('error', (e) => {
+      this.logger.error(`${e.message}`, null, 'PrismaService');
+    });
+  }
 
   /**
    * 模块初始化时连接数据库
@@ -49,7 +49,7 @@ export class PrismaService
     console.group('this must be cancelled');
     // await this.$connect();
     // console.log('database url must be set in .env file');
-    // this.logger.log('Database connected successfully', 'PrismaService');
+    this.logger.log('Database connected successfully', 'PrismaService');
   }
 
   /**
@@ -57,6 +57,6 @@ export class PrismaService
    */
   async onModuleDestroy() {
     await this.$disconnect();
-    // this.logger.log('Database disconnected successfully', 'PrismaService');
+    this.logger.log('Database disconnected successfully', 'PrismaService');
   }
 }

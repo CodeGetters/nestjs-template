@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-// import { LoggerModule } from './common/logger/logger.module';
+import { LoggerModule } from './common/logger/logger.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { AllExceptionFilter } from '@/core/filter/all-exception.filter';
 import { HttpExceptionFilter } from '@/core/filter/http-exception.filter';
@@ -8,13 +8,12 @@ import { APP_FILTER } from '@nestjs/core';
 
 export const NODE_ENV =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
-export const isVercel = process.env.VERCEL === '1';
+export const isVercel = process.env.VERCEL_DEPLOY === '1';
 
-console.log('=========NODE_ENV==========', NODE_ENV);
+console.log('=========NODE_ENV==========', NODE_ENV, isVercel);
 
 @Module({
-  // imports: [PrismaModule, LoggerModule, V1Module],
-  imports: [PrismaModule, V1Module],
+  imports: [PrismaModule, LoggerModule.forRoot(), V1Module],
   providers: [
     // 执行顺序：从后往前！
     {
