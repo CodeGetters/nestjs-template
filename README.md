@@ -146,19 +146,3 @@ getData() {
 ## 许可证
 
 MIT
-
-```json
-  "builds": [
-    {
-      "src": "dist/main.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/main.js",
-      "methods": ["GET", "POST", "PUT", "DELETE"]
-    }
-  ],
-```
