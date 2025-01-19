@@ -5700,7 +5700,7 @@
           return c > 3 && r && Object.defineProperty(target, key, r), r;
         };
       Object.defineProperty(exports, '__esModule', { value: true });
-      exports.AppModule = void 0;
+      exports.AppModule = exports.isVercel = exports.NODE_ENV = void 0;
       const common_1 = __webpack_require__(3563);
       const logger_module_1 = __webpack_require__(7984);
       const prisma_module_1 = __webpack_require__(4620);
@@ -5708,8 +5708,13 @@
       const http_exception_filter_1 = __webpack_require__(5278);
       const index_1 = __webpack_require__(9000);
       const core_1 = __webpack_require__(8781);
-      const NODE_ENV = true ? 'production' : 0;
-      console.log('=========NODE_ENV==========', NODE_ENV);
+      exports.NODE_ENV = true ? 'production' : 0;
+      exports.isVercel = process.env.VERCEL_DEPLOY === '1';
+      console.log(
+        '=========NODE_ENV==========',
+        exports.NODE_ENV,
+        exports.isVercel,
+      );
       let AppModule = class AppModule {};
       exports.AppModule = AppModule;
       exports.AppModule = AppModule = __decorate(
@@ -5717,7 +5722,7 @@
           (0, common_1.Module)({
             imports: [
               prisma_module_1.PrismaModule,
-              logger_module_1.LoggerModule,
+              logger_module_1.LoggerModule.forRoot(),
               index_1.V1Module,
             ],
             providers: [
@@ -5769,22 +5774,36 @@
                   r;
           return c > 3 && r && Object.defineProperty(target, key, r), r;
         };
+      var LoggerModule_1;
       Object.defineProperty(exports, '__esModule', { value: true });
       exports.LoggerModule = void 0;
       const common_1 = __webpack_require__(3563);
       const logger_service_1 = __webpack_require__(6417);
-      let LoggerModule = class LoggerModule {};
-      exports.LoggerModule = LoggerModule;
-      exports.LoggerModule = LoggerModule = __decorate(
-        [
-          (0, common_1.Global)(),
-          (0, common_1.Module)({
-            providers: [logger_service_1.LoggerService],
+      const app_module_1 = __webpack_require__(3004);
+      let LoggerModule = (LoggerModule_1 = class LoggerModule {
+        static forRoot() {
+          return {
+            module: LoggerModule_1,
+            providers: [
+              {
+                provide: logger_service_1.LoggerService,
+                useClass: app_module_1.isVercel
+                  ? logger_service_1.NoopLoggerService
+                  : logger_service_1.LoggerService,
+              },
+            ],
             exports: [logger_service_1.LoggerService],
-          }),
-        ],
-        LoggerModule,
-      );
+          };
+        }
+      });
+      exports.LoggerModule = LoggerModule;
+      exports.LoggerModule =
+        LoggerModule =
+        LoggerModule_1 =
+          __decorate(
+            [(0, common_1.Global)(), (0, common_1.Module)({})],
+            LoggerModule,
+          );
 
       /***/
     },
@@ -5830,7 +5849,7 @@
             return Reflect.metadata(k, v);
         };
       Object.defineProperty(exports, '__esModule', { value: true });
-      exports.LoggerService = void 0;
+      exports.NoopLoggerService = exports.LoggerService = void 0;
       const common_1 = __webpack_require__(3563);
       const winston = __webpack_require__(5124);
       const path = __webpack_require__(6928);
@@ -5886,6 +5905,18 @@
         [(0, common_1.Injectable)(), __metadata('design:paramtypes', [])],
         LoggerService,
       );
+      let NoopLoggerService = class NoopLoggerService {
+        log() {}
+        error() {}
+        warn() {}
+        debug() {}
+        verbose() {}
+      };
+      exports.NoopLoggerService = NoopLoggerService;
+      exports.NoopLoggerService = NoopLoggerService = __decorate(
+        [(0, common_1.Injectable)()],
+        NoopLoggerService,
+      );
 
       /***/
     },
@@ -5925,17 +5956,13 @@
       exports.PrismaModule = void 0;
       const common_1 = __webpack_require__(3563);
       const prisma_service_1 = __webpack_require__(2733);
-      const logger_service_1 = __webpack_require__(6417);
       let PrismaModule = class PrismaModule {};
       exports.PrismaModule = PrismaModule;
       exports.PrismaModule = PrismaModule = __decorate(
         [
           (0, common_1.Global)(),
           (0, common_1.Module)({
-            providers: [
-              prisma_service_1.PrismaService,
-              logger_service_1.LoggerService,
-            ],
+            providers: [prisma_service_1.PrismaService],
             exports: [prisma_service_1.PrismaService],
           }),
         ],
@@ -15898,7 +15925,6 @@
         swaggerOptions: {
           persistAuthorization: true,
           displayRequestDuration: true,
-          docExpansion: 'none',
           filter: true,
           showCommonExtensions: true,
         },
