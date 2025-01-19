@@ -58,7 +58,7 @@ async function bootstrap() {
       // 显示接口响应时间
       displayRequestDuration: true,
       // 默认折叠所有接口文档
-      docExpansion: 'none',
+      // docExpansion: 'none',
       // 启用搜索过滤功能
       filter: true,
       // 显示通用扩展属性
